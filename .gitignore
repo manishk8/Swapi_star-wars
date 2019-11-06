@@ -1,0 +1,11 @@
+.DS_Store
+npm-debug.log
+node_modules/
+.idea/
+dump.rdb
+.vscode/
+dist
+coverage/
+.nyc_output/
+package-lock.json
+public/.DS_Store

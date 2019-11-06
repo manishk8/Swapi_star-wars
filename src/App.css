@@ -1,0 +1,25 @@
+.App {
+  display: flex;
+  flex: 1;
+  min-height: 100vh;
+  background-color: #fafafa;
+}
+
+.loginBlock {display: flex;margin: 0 auto; align-items: center; width: 320px; justify-content: center;}
+.loginBlock form {display: flex; flex: 1; flex-direction: column;}
+.inputBlock {display: flex; padding: 16px 24px; justify-content: space-between; align-items: center;}
+.inputBlock input {height: 32px; width: 172px;}
+.btnCustom {display: flex; width: 96px; height: 40px; background-color: #16394f; color: #fff; font-size: 14px; font-weight: 450; justify-content: center; align-items: center; margin: 16px auto; cursor: pointer;}
+
+.container {display: flex; flex: 1; flex-direction: column;}
+.header {display: flex; padding: 0 40px; height: 80px; background-color: #fff; justify-content: space-between; box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.12);}
+.header > h3 {color: #16394f; display: flex; flex: 1 1 auto;}
+.wrapper {display: flex; flex: 1; padding: 24px 40px; flex-direction: column}
+
+.searchBlock {display: flex; padding: 24px 0;}
+.searchBlock form {display: flex; flex: 1 1 auto; align-items: center; justify-content: center;}
+.searchBlock input {width: 50%; height: 32px; border-radius: 99px; border: 1px solid rgba(0,0,0,0.27); padding: 0 20px;}
+.searchBlock input:focus {outline: none;}
+.displayBlock {display: flex; justify-content: center;}
+.displayBlock > ul {display: flex; flex-direction: column; margin: 0; padding: 0;}
+.displayBlock > ul > li {display: flex; border: 1px solid rgba(210, 180, 140); border-radius: 99px; margin-bottom: 12px; padding: 8px 12px; align-items: center; justify-content: center;}
