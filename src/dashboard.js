@@ -5,7 +5,8 @@ export default class Dashboard extends Component {
         super();
         this.state = {
             planets: [],
-            searchValue: ""
+            searchValue: "",
+            flag: false
         }
     }
 
@@ -53,53 +54,32 @@ export default class Dashboard extends Component {
     }
 
     handleInputChange = (event) => {
-        this.setState({ searchValue: event.target.value });
-        // console.log("searchValue", searchValue);
+        var val = event.target.value
+        this.setState({ searchValue: val });
 
-        // const { planets, searchValue } = this.state;
-        // console.log("planets cccccc", planets)
-
-        // this.setState({ planets: planets && planets.length > 0 ? planets.filter(val => val.name === searchValue) : "nothing" })
-        // console.log("planets 22222", planets)
+        if (val !== "") {
+            this.setState({ flag: true });
+        }
+        else {
+            this.setState({ flag: false });
+        }
 
     }
 
-
+    getPopolation = () => {
+        var { planets } = this.state;
+        console.log("population", planets);
+    }
 
     render() {
-        const { planets, searchValue } = this.state;
+        const { planets, searchValue, flag } = this.state;
         const found_array = [];
-        // console.log("planetsffffffffff: ", searchValue);
-        // const list = planets && planets.length > 0 ? planets.map(val => val.name) : "null";
-        // const ppppp = planets.map((val, index) => <li key={index}>{val.name}</li>)
-        // console.log("planetsjjj ", planets);
-        // planets.sort(function (a, b) {
-        //     return a.population == b.population ? 0 : +(a.population > b.population) || -1;
-        // })
-        // planets.sort(function (a, b) {
-        //     return a.population === "unknown" ? 0 : (Number(a.population) - Number(b.population));
-        // });
-        // planets = this.sortItems(planets);
-        // console.log("planets-Sort ", planets)
         for (let val of planets) {
-            // let obj = {};
-            // console.log("val name: " + val.population);
             if (val.name.toLowerCase().indexOf(searchValue.toLowerCase()) > -1) {
                 found_array.push(val.name);
             }
         }
 
-        // }
-        // found_array.sort(function (a, b) { return a - b });
-        // console.log("found_array: ", found_array);
-
-
-
-        // this.setState( planets : found_array);
-
-        // const ppppp = planets.results.indexOf(searchValue);
-        // console.log("list: ", ppppp);
-        // console.log("planetState", planetState && planetState.results && planetState.results.length > 0 ? planetState.results.map(val => val.name) : "nothing")
         return (
             <div className="container">
                 <header className="header">
@@ -119,16 +99,17 @@ export default class Dashboard extends Component {
                     <div className="displayBlock">
                         <ul>
                             {
-                                found_array.map((val, index) => {
+                                flag === true && found_array.map((val, index) => {
                                     return (
-                                        // const hhh = 40 - ({ index } * 4);
-                                        < li key={index} style={{ fontSize: (found_array.length - index) * 4 + 12, backgroundColor: "rgba" + `(210, 180, 140, 0.${found_array.length - index - 1})` }} > {val}</li>
+                                        < li onClick={this.getPopolation} key={index} style={{ fontSize: (found_array.length - index) * 4 + 12, backgroundColor: "rgba" + `(210, 180, 140, 0.${found_array.length - index - 1})` }} > {val}</li>
                                     )
                                 }
 
                                 )
                             }
                         </ul>
+                        <div>
+                        </div>
                     </div>
                 </div>
             </div>
