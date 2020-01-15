@@ -5,7 +5,8 @@ export default class Dashboard extends Component {
         super();
         this.state = {
             planets: [],
-            searchValue: ""
+            searchValue: "",
+            flag: false
         }
     }
 
@@ -53,7 +54,15 @@ export default class Dashboard extends Component {
     }
 
     handleInputChange = (event) => {
-        this.setState({ searchValue: event.target.value });
+        var val = event.target.value
+        this.setState({ searchValue: val });
+
+        if (val !== "") {
+            this.setState({ flag: true });
+        }
+        else {
+            this.setState({ flag: false });
+        }
         // console.log("searchValue", searchValue);
 
         // const { planets, searchValue } = this.state;
@@ -64,11 +73,25 @@ export default class Dashboard extends Component {
 
     }
 
+    getPopolation = () => {
+        var { planets } = this.state;
+        console.log("population", planets);
+    }
 
 
     render() {
-        const { planets, searchValue } = this.state;
+        // const { planets, searchValue } = this.state;
+        const { planets, searchValue, flag } = this.state;
         const found_array = [];
+        for (let val of planets) {
+            // let obj = {};
+            // console.log("val name: " + val.population);
+            if (val.name.toLowerCase().indexOf(searchValue.toLowerCase()) > -1) {
+                found_array.push(val.name);
+            }
+        }
+
+        console.log("found_array", found_array)
         // console.log("planetsffffffffff: ", searchValue);
         // const list = planets && planets.length > 0 ? planets.map(val => val.name) : "null";
         // const ppppp = planets.map((val, index) => <li key={index}>{val.name}</li>)
@@ -81,13 +104,7 @@ export default class Dashboard extends Component {
         // });
         // planets = this.sortItems(planets);
         // console.log("planets-Sort ", planets)
-        for (let val of planets) {
-            // let obj = {};
-            // console.log("val name: " + val.population);
-            if (val.name.toLowerCase().indexOf(searchValue.toLowerCase()) > -1) {
-                found_array.push(val.name);
-            }
-        }
+
 
         // }
         // found_array.sort(function (a, b) { return a - b });
@@ -119,16 +136,18 @@ export default class Dashboard extends Component {
                     <div className="displayBlock">
                         <ul>
                             {
-                                found_array.map((val, index) => {
+                                flag === true && found_array.map((val, index) => {
                                     return (
                                         // const hhh = 40 - ({ index } * 4);
-                                        < li key={index} style={{ fontSize: (found_array.length - index) * 4 + 12, backgroundColor: "rgba" + `(210, 180, 140, 0.${found_array.length - index - 1})` }} > {val}</li>
+                                        < li onClick={this.getPopolation} key={index} style={{ fontSize: (found_array.length - index) * 4 + 12, backgroundColor: "rgba" + `(210, 180, 140, 0.${found_array.length - index - 1})` }} > {val}</li>
                                     )
                                 }
 
                                 )
                             }
                         </ul>
+                        <div>
+                        </div>
                     </div>
                 </div>
             </div>
