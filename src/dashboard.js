@@ -65,11 +65,12 @@ export default class Dashboard extends Component {
         }
         // console.log("searchValue", searchValue);
 
-        // const { planets, searchValue } = this.state;
-        // console.log("planets cccccc", planets)
-
-        // this.setState({ planets: planets && planets.length > 0 ? planets.filter(val => val.name === searchValue) : "nothing" })
-        // console.log("planets 22222", planets)
+        if (val !== "") {
+            this.setState({ flag: true });
+        }
+        else {
+            this.setState({ flag: false });
+        }
 
     }
 
@@ -106,17 +107,6 @@ export default class Dashboard extends Component {
         // console.log("planets-Sort ", planets)
 
 
-        // }
-        // found_array.sort(function (a, b) { return a - b });
-        // console.log("found_array: ", found_array);
-
-
-
-        // this.setState( planets : found_array);
-
-        // const ppppp = planets.results.indexOf(searchValue);
-        // console.log("list: ", ppppp);
-        // console.log("planetState", planetState && planetState.results && planetState.results.length > 0 ? planetState.results.map(val => val.name) : "nothing")
         return (
             <div className="container">
                 <header className="header">

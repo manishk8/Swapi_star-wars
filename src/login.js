@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { withRouter } from "react-router-dom";
 
 export default class Login extends Component {
     constructor(props) {
@@ -8,7 +7,8 @@ export default class Login extends Component {
             name: "",
             email: "",
             phone: "",
-            url: ""
+            url: "",
+            password: ""
         };
     }
 
@@ -18,8 +18,25 @@ export default class Login extends Component {
         this.setState({ [name]: val });
     }
 
-    handleSubmit = () => {
-        // event.preventDefault();
+    handleSubmit = (event) => {
+        event.preventDefault();
+        const { name, email, phone, password } = this.state;
+
+        if (name === "") {
+            document.getElementById("errMsg").innerHTML = `<span>Please Enter Your Name !</span>`
+        }
+        else if (email === "") {
+            document.getElementById("errMsg").innerHTML = `<span>Please Enter Your Email !</span>`
+        }
+        else if (phone === "") {
+            document.getElementById("errMsg").innerHTML = `<span>Please Enter Your Phone !</span>`
+        }
+        else if (password === "") {
+            document.getElementById("errMsg").innerHTML = `<span>Please Enter Your Password !</span>`
+        }
+        else {
+            this.props.history.push("/dashboard");
+        }
 
     }
 
@@ -43,6 +60,8 @@ export default class Login extends Component {
                     <div className="inputBlock">
                         <label>URL: </label>
                         <input type="url" name="url" onChange={this.handleChange} />
+                        <label>Password: </label>
+                        <input type="password" name="password" onChange={this.handleChange} />
                     </div>
                     <div className="inputBlock">
                         <a href="#" onClick={this.handleSubmit} >Submit</a>
